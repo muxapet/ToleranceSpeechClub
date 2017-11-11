@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$PROJECT_DIR$" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="DummyVariantController.cs" t="Include" />
+        <e p="ScriptableObjects" t="Include">
+          <e p="Sentences" t="Include">
+            <e p="businessman.txt" t="Include" />
+            <e p="hippi.txt" t="Include" />
+            <e p="player.txt" t="Include" />
+            <e p="redneck.txt" t="Include" />
+          </e>
+        </e>
+        <e p="Scripts" t="Include">
+          <e p="DummyGUI" t="Include">
+            <e p="DummyGUI.cs" t="Include" />
+            <e p="DummyPersonController.cs" t="Include" />
+          </e>
+          <e p="Model" t="Include">
+            <e p="BasePlayer.cs" t="Include" />
+            <e p="CpuPlayer.cs" t="Include" />
+            <e p="HumanPlayer.cs" t="Include" />
+            <e p="ICharacter.cs" t="Include" />
+            <e p="ScriptableObjects" t="Include">
+              <e p="CategoriesValues.cs" t="Include" />
+              <e p="CharacterObject.cs" t="Include" />
+              <e p="SentenceCollection.cs" t="Include" />
+              <e p="SentenceObject.cs" t="Include" />
+              <e p="SkinObject.cs" t="Include" />
+            </e>
+          </e>
+          <e p="RoundController.cs" t="Include" />
+          <e p="Utils.cs" t="Include" />
+        </e>
+        <e p="ThirdParty" t="Include">
+          <e p="OneLine" t="Include">
+            <e p="Attributes" t="Include">
+              <e p="ArrayLengthAttribute.cs" t="Include" />
+              <e p="HideButtonsAttribute.cs" t="Include" />
+              <e p="HideLabelAttribute.cs" t="Include" />
+              <e p="HighlightAttribute.cs" t="Include" />
+              <e p="OneLineAttribute.cs" t="Include" />
+              <e p="SeparatorAttribute.cs" t="Include" />
+              <e p="WeightAttribute.cs" t="Include" />
+              <e p="WidthAttribute.cs" t="Include" />
+            </e>
+            <e p="Editor" t="Include">
+              <e p="Drawers" t="Include">
+                <e p="Array" t="Include">
+                  <e p="ArrayButtonsDrawer.cs" t="Include" />
+                  <e p="DynamicArrayDrawer.cs" t="Include" />
+                  <e p="FixedArrayDrawer.cs" t="Include" />
+                </e>
+                <e p="ComplexFieldDrawer.cs" t="Include" />
+                <e p="Decorators" t="Include">
+                  <e p="HeaderDrawer.cs" t="Include" />
+                  <e p="SeparatorDrawer.cs" t="Include" />
+                  <e p="SpaceDrawer.cs" t="Include" />
+                </e>
+                <e p="Directory" t="Include">
+                  <e p="DirectoryDrawer.cs" t="Include" />
+                  <e p="RootDirectoryDrawer.cs" t="Include" />
+                </e>
+                <e p="Drawer.cs" t="Include" />
+                <e p="SimpleFieldDrawer.cs" t="Include" />
+              </e>
+              <e p="OneLinePropertyDrawer.cs" t="Include" />
+              <e p="SeparatorAttributeDrawer.cs" t="Include" />
+              <e p="Slices" t="Include">
+                <e p="MetaSlice.cs" t="Include" />
+                <e p="Slice.cs" t="Include" />
+                <e p="Slices.cs" t="Include" />
+                <e p="SlicesCache.cs" t="Include" />
+              </e>
+              <e p="Utils" t="Include">
+                <e p="ArraysSizeObserver.cs" t="Include" />
+                <e p="GuiUtil.cs" t="Include" />
+                <e p="IEnumerableExtension.cs" t="Include" />
+                <e p="InspectorUtil.cs" t="Include" />
+                <e p="NullableObjectExtension.cs" t="Include" />
+                <e p="RectExtension.cs" t="Include" />
+                <e p="SerializedPropertyExtension.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="Plugins" t="Include">
+            <e p="Editor" t="Include">
+              <e p="JetBrains" t="Include">
+                <e p="Unity3DRider.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="Library" t="ExcludeRecursive" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="SpeechClub.sln" t="IncludeFlat" />
+      <e p="Temp" t="ExcludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+      </e>
+    </e>
+    <e p="$USER_HOME$/Library/Caches/Rider2017.2/resharper-host/local/Transient/ReSharperHost/v10/SolutionCaches/_SpeechClub.2071300784.00" t="ExcludeRecursive" />
+  </component>
+</project>
