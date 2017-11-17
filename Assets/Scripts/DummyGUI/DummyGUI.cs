@@ -29,8 +29,8 @@ public class DummyGUI : MonoBehaviour
         for (int i = 0; i < characters.Length; i++)
         {
             Labels[i].Label.text = characters[i].GetCharacter().Title;
-            Labels[i].Patience.fillAmount =
-                (float) characters[i].GetPatience() / characters[i].GetCharacter().StartPatience;
+            Labels[i].Patience.SetValue(
+                (float) characters[i].GetPatience() / characters[i].GetCharacter().StartPatience);
         }
     }
 
@@ -63,11 +63,21 @@ public class DummyGUI : MonoBehaviour
     private void OnPlayerAnswered(ICharacter player, SentenceObject sentence)
     {
         DummyGUI.Log("<color=#f00>"+player.GetCharacter().Title + " сказал " + sentence.Id + "</color>");
+        UpdatePatience();
     }
 
     public static void Log(string str)
     {
         GetInstance().Logger.text = (str + Environment.NewLine + GetInstance().Logger.text);
+    }
+
+    private void UpdatePatience()
+    {
+        for (int i = 0; i < _characters.Length; i++)
+        {
+            Labels[i].Patience.SetValue(
+                (float) _characters[i].GetPatience() / _characters[i].GetCharacter().StartPatience);
+        }
     }
 
     private static DummyGUI _instance;

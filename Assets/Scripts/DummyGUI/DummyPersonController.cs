@@ -6,6 +6,6 @@ using UnityEngine.UI;
 public class DummyPersonController : MonoBehaviour
 {
 	public Text Label;
-	public Image Patience;
+	public DummyValueCounter Patience;
 	public Image CurrentSelection;
 }

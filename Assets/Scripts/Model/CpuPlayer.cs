@@ -49,7 +49,7 @@ namespace Model
                 }
             }
 
-            _patience += influence;
+            _patience += influence;    
         }
     }
 }
