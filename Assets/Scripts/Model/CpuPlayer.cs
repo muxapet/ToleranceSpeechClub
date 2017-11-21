@@ -39,12 +39,7 @@ namespace Model
                     if (Equals(sentenceCategory.CategoryName, characterCaresOf.CategoryName))
                     {
                         int catInfluence = sentenceCategory.Value * characterCaresOf.Value;
-                        influence += catInfluence;
-                        if (catInfluence != 0)
-                        {
-                            DummyGUI.Log("To " + GetCharacter().Title + " in " + sentenceCategory.CategoryName + " " +
-                                         influence);
-                        }
+                        influence += Mathf.Clamp(catInfluence, 0, GetCharacter().StartPatience);
                     }
                 }
             }

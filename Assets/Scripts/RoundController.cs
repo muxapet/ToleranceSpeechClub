@@ -49,13 +49,22 @@ public class RoundController : MonoBehaviour
         {
             _currentTurn = _currentTurn.Next;
         }
+        Debug.Log("Start turn " + _currentTurn.Value.GetCharacter().Title);
 
         var variants = _currentTurn.Value.GetVariants(VariantsCount);
         if (OnActivePlayerChanged != null)
         {
             OnActivePlayerChanged(previousCharacter, _currentTurn.Value, variants);
         }
-        Invoke("GenerateAnswer", 3f);
+
+        if (_currentTurn.Value.IsHuman())
+        {
+            _currentTurn.Value.OnStartTurn();
+        }
+        else
+        {
+            Invoke("GenerateAnswer", 3f);
+        }
     }
 
     private void GenerateAnswer()
@@ -78,7 +87,6 @@ public class RoundController : MonoBehaviour
             OnActivePlayerAnswered(_currentTurn.Value, sentence);
         }
         _currentTurn.Value.OnEndTurn();
-        
         NextTurn();
     }
 
