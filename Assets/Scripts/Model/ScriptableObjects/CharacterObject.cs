@@ -9,6 +9,8 @@ public class CharacterObject : ScriptableObject
     public string Title = "";
     public TextAsset SentencesTSV;
     public int StartPatience = 100;
+    public AudioClip[] SpeechSounds;
+    public AudioClip[] RageSpeechSounds;
     
     [SerializeField, OneLine.OneLine, OneLine.HideLabel]
     public CategoryValue[] CaresOf = {
@@ -32,5 +34,17 @@ public class CharacterObject : ScriptableObject
             }
             return _sentences;
         }
+    }
+
+    public AudioClip GetSaySound()
+    {
+        if(SpeechSounds == null || SpeechSounds.Length == 0) return null;
+        return SpeechSounds[Random.Range(0, SpeechSounds.Length)];
+    }
+
+    public AudioClip GetSayRageSound()
+    {
+        if(RageSpeechSounds == null || RageSpeechSounds.Length == 0) return null;
+        return RageSpeechSounds[Random.Range(0, RageSpeechSounds.Length)];
     }
 }

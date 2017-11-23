@@ -65,5 +65,10 @@ public class RoomController : MonoBehaviour
 	private void OnPlayerAnswered(ICharacter player, SentenceObject sentence)
 	{
 		Camera.SetControlsEnabled(true);
+		AudioClip saySound = player.GetCharacter().GetSaySound();
+		if (saySound != null)
+		{
+			SoundController.Play(saySound);
+		}
 	}
 }
