@@ -28,7 +28,7 @@ public class BubbleController : MonoBehaviour
 
         gameObject.SetActive(true);
         _rectTransform.anchoredPosition = _basePosition + new Vector2(0, 1000);
-        _rectTransform.DOAnchorPos(_basePosition, 1f).SetEase(Ease.OutElastic).Play();
+        _rectTransform.DOAnchorPos(_basePosition, 1f).SetDelay(2f).SetEase(Ease.OutElastic).Play();
     }
 
     public void Hide()

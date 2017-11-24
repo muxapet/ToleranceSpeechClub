@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class RoomController : MonoBehaviour
 {
+	public TalkingBubbleController TalkingBubble;
 	public CameraController Camera;
 	public RoundController Game;
 	public BallController Ball;
-	public Transform[] PlayersHands;
+	public CharacterAvatarController[] CharacterAvatars;
 	private ICharacter[] _characters;
 	private int _humanPosOffset = 0;
+	private readonly Dictionary<ICharacter, CharacterAvatarController> _charactersDict = new Dictionary<ICharacter, CharacterAvatarController>();
 	
 	private void Awake()
 	{
@@ -30,34 +32,37 @@ public class RoomController : MonoBehaviour
 				break;
 			}
 		}
+		_charactersDict.Clear();
+		for (int i = 0; i < CharacterAvatars.Length; i++)
+		{
+			int chairId = i - _humanPosOffset;
+			if (chairId < 0) chairId += CharacterAvatars.Length;
+			_charactersDict.Add(_characters[i], CharacterAvatars[chairId]);
+			CharacterAvatars[chairId].Init(_characters[i], Game);
+		}
+		
+		TalkingBubble.Hide();
 	}
 
 	private void OnNewTurn(ICharacter from, ICharacter to, SentenceObject[] variants)
 	{
 		Camera.SetControlsEnabled(!to.IsHuman());
-		try
-		{
-			Debug.Log(from.GetCharacter().Title + "->>" + to.GetCharacter().Title);
-		} catch(Exception e)
-		{}
 
-		int fromId = -1, toId = -1;
-		for (int i = 0; i < _characters.Length; i++)
+		CharacterAvatarController fromChair = null, toChair = null;
+		foreach (var character in _charactersDict)
 		{
-			if (ReferenceEquals(_characters[i], from))
+			if (ReferenceEquals(character.Key, from))
 			{
-				fromId = i - _humanPosOffset;
-				if (fromId < 0) fromId += PlayersHands.Length;
+				fromChair = character.Value;
 			}
-			if (ReferenceEquals(_characters[i], to))
+			if (ReferenceEquals(character.Key, to))
 			{
-				toId = i - _humanPosOffset;
-				if (toId < 0) toId += PlayersHands.Length;
+				toChair = character.Value;
 			}
 		}
-		if (fromId >= 0 && toId >= 0)
+		if (fromChair != null && toChair != null)
 		{
-			Ball.Throw(PlayersHands[fromId], PlayersHands[toId]);
+			Ball.Throw(fromChair.GetHandsTransform(), toChair.GetHandsTransform());
 		}
 		
 	}
@@ -69,6 +74,10 @@ public class RoomController : MonoBehaviour
 		if (saySound != null)
 		{
 			SoundController.Play(saySound);
+		}
+		if (!player.IsHuman())
+		{
+			TalkingBubble.Say(_charactersDict[player].GetHandsTransform().position, sentence, Camera.GetRotation());
 		}
 	}
 }

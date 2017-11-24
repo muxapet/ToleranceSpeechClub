@@ -27,6 +27,11 @@ public class CameraController : MonoBehaviour
 		}
 	}
 
+	public Quaternion GetRotation()
+	{
+		return _transform.rotation;
+	}
+
 	public void SetControlsEnabled(bool enabled)
 	{
 		Looker.enabled = enabled;
