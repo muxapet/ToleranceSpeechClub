@@ -12,10 +12,12 @@ public class BubbleController : MonoBehaviour
     private SentenceObject _sentence;
     private RectTransform _rectTransform;
     private Vector2 _basePosition;
+    private AudioClip _clip;
 
-    public void Show(VariantsUIController ui, SentenceObject sentence)
+    public void Show(VariantsUIController ui, SentenceObject sentence, AudioClip sound, float delay)
     {
         _ui = ui;
+        _clip = sound;
         _sentence = sentence;
 
         Label.text = sentence.Id;
@@ -28,7 +30,13 @@ public class BubbleController : MonoBehaviour
 
         gameObject.SetActive(true);
         _rectTransform.anchoredPosition = _basePosition + new Vector2(0, 1000);
-        _rectTransform.DOAnchorPos(_basePosition, 1f).SetDelay(2f).SetEase(Ease.OutElastic).Play();
+        Invoke("ShowBubble", 2f + delay);
+    }
+
+    private void ShowBubble()
+    {
+        SoundController.Play(_clip);
+        _rectTransform.DOAnchorPos(_basePosition, 1f).SetEase(Ease.OutBack).Play();
     }
 
     public void Hide()
@@ -38,7 +46,7 @@ public class BubbleController : MonoBehaviour
             gameObject.SetActive(false);
             return;
         }
-        _rectTransform.DOAnchorPos(_basePosition + new Vector2(0, 1000), 1f).SetEase(Ease.InOutElastic)
+        _rectTransform.DOAnchorPos(_basePosition + new Vector2(0, 1000), 1f).SetEase(Ease.InBack)
             .OnComplete(() => { gameObject.SetActive(false); }).Play();
     }
 

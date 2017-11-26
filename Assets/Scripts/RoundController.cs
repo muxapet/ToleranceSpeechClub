@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 
 public class RoundController : MonoBehaviour
 {
+    public MainMenuController MainMenu;
     public bool IsAllowToSameCharacters;
     public int OpponentsCount = 3;
     public int VariantsCount = 3;
@@ -21,13 +22,26 @@ public class RoundController : MonoBehaviour
     private LinkedList<ICharacter> _players;
     private LinkedListNode<ICharacter> _currentTurn;
 
-    private void Start()
+    public AudioClip GameMusic;
+    public AudioClip FinishSound;
+
+    private float _startTime = 0;
+    private float ROUND_TIME = 300;
+
+    public bool FailIfAllPlayersZero = true;
+
+    public float RoundTime
     {
-        StartRound();
+        get { return ROUND_TIME - (Time.time - _startTime); }
+    }
+    public float RoundLastTime
+    {
+        get { return Time.time - _startTime; }
     }
 
     public void StartRound()
     {
+        _startTime = Time.time;
         _players = CreatePlayers(ChooseOpponents());
 
         if (OnRoundStarted != null)
@@ -35,7 +49,22 @@ public class RoundController : MonoBehaviour
             OnRoundStarted(_players.ToArray());
         }
         
-        NextTurn();
+        SoundController.Play(GameMusic, true);
+        
+        Invoke("NextTurn", 3f);
+    }
+
+    public void StopGame(float time)
+    {
+        CancelInvoke();
+        if (_players != null)
+        {
+            _players.Clear();
+        }
+        _currentTurn = null;
+        MainMenu.Show(time);
+        SoundController.Stop(GameMusic);
+        SoundController.Play(FinishSound);
     }
 
     private void NextTurn()
@@ -86,6 +115,37 @@ public class RoundController : MonoBehaviour
         {
             OnActivePlayerAnswered(_currentTurn.Value, sentence);
         }
+
+        bool hasNotFailed = false;
+        bool hasFailed = false;
+        foreach (var player in _players)
+        {
+            if (player.GetPatience() > 0)
+            {
+                hasNotFailed = true;
+            }
+            else
+            {
+                hasFailed = true;
+            }
+        }
+        if (FailIfAllPlayersZero)
+        {
+            if (!hasNotFailed)
+            {
+                StopGame(RoundLastTime);
+                return;
+            }
+        }
+        else
+        {
+            if (hasFailed)
+            {
+                StopGame(RoundLastTime);
+                return;
+            }
+        }
+        
         _currentTurn.Value.OnEndTurn();
         NextTurn();
     }
@@ -138,5 +198,18 @@ public class RoundController : MonoBehaviour
 
         Debug.Log("Turn queue: " + queue);
         return players;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            StopGame(RoundLastTime);
+        }
+
+        if (RoundTime <= 0)
+        {
+            StopGame(RoundLastTime);
+        }
     }
 }

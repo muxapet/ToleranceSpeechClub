@@ -1,10 +1,27 @@
 ﻿using System;
 using UnityEngine;
+using Wazzapps;
 
 public class SentenceObject
 {
-    public string Id { get; private set; }
+    public string Id
+    {
+        get
+        {
+            if (Localizator.GetLanguage() == SystemLanguage.Russian)
+            {
+                return _ru;
+            }
+            else
+            {
+                return _eng;
+            }
+        }
+    }
+
     public CategoryValue[] Influence;
+
+    private string _eng, _ru;
 
     private string _idMd5;
 
@@ -32,9 +49,10 @@ public class SentenceObject
         PlayerPrefs.SetInt(GetIdMD5(), 0);
     }
 
-    public SentenceObject(string id)
+    public SentenceObject(string eng, string ru)
     {
-        Id = id;
+        _eng = eng;
+        _ru = ru;
         OnNewGameStarted();
     }
 }

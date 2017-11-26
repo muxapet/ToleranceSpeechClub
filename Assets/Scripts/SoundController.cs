@@ -155,6 +155,12 @@ public class SoundController : MonoBehaviour
         return false;
     }
 
+    public static void Stop(AudioClip clip)
+    {
+        string name = "aclip_" + clip.name;
+        Stop(name);
+    }
+
     public static void Stop(string name)
     {
         if (instance == null)

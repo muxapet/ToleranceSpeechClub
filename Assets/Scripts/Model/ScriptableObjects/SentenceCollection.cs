@@ -94,7 +94,13 @@ public class SentenceCollection
                 string[] values = lines[i].Split('	');
                 if (values.Length >= 9)
                 {
-                    SentenceObject sentence = new SentenceObject(values[1].Trim());
+                    string ru = values[1].Trim();
+                    string eng = ru;
+                    if (values.Length > 11)
+                    {
+                        eng = values[11].Trim();
+                    }
+                    SentenceObject sentence = new SentenceObject(eng, ru);
                     
                     List<CategoryValue> influences = new List<CategoryValue>();
                     for (int j = 2; j < values.Length; j++)

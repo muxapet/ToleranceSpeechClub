@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using Model;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class VariantsUIController : MonoBehaviour {
 	public RoundController Game;
 	public BubbleController[] Bubbles;
+	public Text Timer;
+	public AudioClip BubbleSound;
 	
 	private ICharacter _current;
 	
@@ -29,7 +32,7 @@ public class VariantsUIController : MonoBehaviour {
 		{
 			for (int i = 0; i < Bubbles.Length; i++)
 			{
-				Bubbles[i].Show(this, variants[i]);
+				Bubbles[i].Show(this, variants[i], BubbleSound, i * 0.5f);
 			}
 		}
 	}
@@ -54,5 +57,10 @@ public class VariantsUIController : MonoBehaviour {
 		{
 			Bubbles[i].Hide();
 		}
+	}
+
+	private void Update()
+	{
+		Timer.text = string.Format("{0:0}:{1:00}", (int)Game.RoundTime/60, ((int)Game.RoundTime)%60);
 	}
 }

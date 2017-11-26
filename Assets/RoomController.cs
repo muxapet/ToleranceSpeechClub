@@ -46,7 +46,7 @@ public class RoomController : MonoBehaviour
 
 	private void OnNewTurn(ICharacter from, ICharacter to, SentenceObject[] variants)
 	{
-		Camera.SetControlsEnabled(!to.IsHuman());
+//		Camera.SetControlsEnabled(!to.IsHuman());
 
 		CharacterAvatarController fromChair = null, toChair = null;
 		foreach (var character in _charactersDict)
@@ -69,15 +69,10 @@ public class RoomController : MonoBehaviour
 
 	private void OnPlayerAnswered(ICharacter player, SentenceObject sentence)
 	{
-		Camera.SetControlsEnabled(true);
-		AudioClip saySound = player.GetCharacter().GetSaySound();
-		if (saySound != null)
-		{
-			SoundController.Play(saySound);
-		}
+//		Camera.SetControlsEnabled(true);
 		if (!player.IsHuman())
 		{
-			TalkingBubble.Say(_charactersDict[player].GetHandsTransform().position, sentence, Camera.GetRotation());
+			TalkingBubble.Say(_charactersDict[player].GetHandsTransform().position, sentence, Camera.gameObject.transform);
 		}
 	}
 }

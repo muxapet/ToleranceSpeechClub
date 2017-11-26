@@ -38,13 +38,18 @@ namespace Model
 
                     if (Equals(sentenceCategory.CategoryName, characterCaresOf.CategoryName))
                     {
+                        if (characterCaresOf.Value < -10)
+                        {
+                            characterCaresOf.Value = Random.Range(-10, 10);
+                        }
                         int catInfluence = sentenceCategory.Value * characterCaresOf.Value;
-                        influence += Mathf.Clamp(catInfluence, 0, GetCharacter().StartPatience);
+                        if (catInfluence < 0) catInfluence = catInfluence * 2;
+                        influence += catInfluence;
                     }
                 }
             }
 
-            _patience += influence;    
+            _patience = Mathf.Clamp(_patience + influence, 0, GetCharacter().StartPatience);    
         }
     }
 }
