@@ -133,7 +133,8 @@ public class RoundController : MonoBehaviour
         {
             if (!hasNotFailed)
             {
-                StopGame(RoundLastTime);
+                CancelInvoke();
+                Invoke("OnPlayerLose", 3f);
                 return;
             }
         }
@@ -141,13 +142,19 @@ public class RoundController : MonoBehaviour
         {
             if (hasFailed)
             {
-                StopGame(RoundLastTime);
+                CancelInvoke();
+                Invoke("OnPlayerLose", 3f);
                 return;
             }
         }
         
         _currentTurn.Value.OnEndTurn();
         NextTurn();
+    }
+
+    private void OnPlayerLose()
+    {
+        StopGame(RoundLastTime);
     }
 
     private CharacterObject[] ChooseOpponents()
