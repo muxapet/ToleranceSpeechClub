@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Character_", menuName = "Character info")]
 public class CharacterObject : ScriptableObject
 {
+public GameObject Prefab;
     public SkinObject[] Skins;
     public string Title = "";
     public TextAsset SentencesTSV;

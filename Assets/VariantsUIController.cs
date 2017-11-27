@@ -28,7 +28,7 @@ public class VariantsUIController : MonoBehaviour {
 	private void OnNewTurn(ICharacter from, ICharacter to, SentenceObject[] variants)
 	{
 		_current = to;
-		if (_current.IsHuman() && Bubbles != null)
+		if (_current.IsHuman() && Bubbles != null && !Game.IsGameLoose)
 		{
 			for (int i = 0; i < Bubbles.Length; i++)
 			{

@@ -27,17 +27,16 @@ public class RoundController : MonoBehaviour
 
     private float _startTime = 0;
     private float ROUND_TIME = 300;
+    private bool _isLoose = true;
+
+    public bool IsGameLoose
+    {
+        get { return _isLoose; }
+    }
 
     public bool FailIfAllPlayersZero = true;
 
-    public float RoundTime
-    {
-        get { return ROUND_TIME - (Time.time - _startTime); }
-    }
-    public float RoundLastTime
-    {
-        get { return Time.time - _startTime; }
-    }
+    public float RoundTime { get; private set; }
 
     public void StartRound()
     {
@@ -52,6 +51,8 @@ public class RoundController : MonoBehaviour
         SoundController.Play(GameMusic, true);
         
         Invoke("NextTurn", 3f);
+        _isLoose = false;
+        RoundTime = 0;
     }
 
     public void StopGame(float time)
@@ -79,12 +80,24 @@ public class RoundController : MonoBehaviour
             _currentTurn = _currentTurn.Next;
         }
         Debug.Log("Start turn " + _currentTurn.Value.GetCharacter().Title);
+ 
+        if (IsLoose())
+        {
+            _isLoose = true;
+        }
 
         var variants = _currentTurn.Value.GetVariants(VariantsCount);
         if (OnActivePlayerChanged != null)
         {
             OnActivePlayerChanged(previousCharacter, _currentTurn.Value, variants);
         }
+
+        if (_isLoose)
+        {
+            
+            return;
+        }
+        
 
         if (_currentTurn.Value.IsHuman())
         {
@@ -116,6 +129,13 @@ public class RoundController : MonoBehaviour
             OnActivePlayerAnswered(_currentTurn.Value, sentence);
         }
 
+        _currentTurn.Value.OnEndTurn();
+
+        NextTurn();
+    }
+
+    private bool IsLoose()
+    {
         bool hasNotFailed = false;
         bool hasFailed = false;
         foreach (var player in _players)
@@ -133,28 +153,22 @@ public class RoundController : MonoBehaviour
         {
             if (!hasNotFailed)
             {
-                CancelInvoke();
-                Invoke("OnPlayerLose", 3f);
-                return;
+                return true;
             }
         }
         else
         {
             if (hasFailed)
             {
-                CancelInvoke();
-                Invoke("OnPlayerLose", 3f);
-                return;
+                return true;
             }
         }
-        
-        _currentTurn.Value.OnEndTurn();
-        NextTurn();
+        return false;
     }
 
     private void OnPlayerLose()
     {
-        StopGame(RoundLastTime);
+        StopGame(RoundTime);
     }
 
     private CharacterObject[] ChooseOpponents()
@@ -211,12 +225,17 @@ public class RoundController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            StopGame(RoundLastTime);
+            StopGame(RoundTime);
         }
 
-        if (RoundTime <= 0)
+        if (ROUND_TIME - RoundTime <= 0)
         {
-            StopGame(RoundLastTime);
+            StopGame(RoundTime);
+        }
+
+        if (_isLoose == false)
+        {
+            RoundTime += Time.deltaTime;
         }
     }
 }

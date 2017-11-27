@@ -42,6 +42,8 @@ public class RoomController : MonoBehaviour
 		}
 		
 		TalkingBubble.Hide();
+		
+		Ball.gameObject.SetActive(false);
 	}
 
 	private void OnNewTurn(ICharacter from, ICharacter to, SentenceObject[] variants)
@@ -62,6 +64,7 @@ public class RoomController : MonoBehaviour
 		}
 		if (fromChair != null && toChair != null)
 		{
+			Ball.gameObject.SetActive(true);
 			Ball.Throw(fromChair.GetHandsTransform(), toChair.GetHandsTransform());
 		}
 		
