@@ -12,31 +12,19 @@ public class CharacterAvatarController : MonoBehaviour
     public Sprite[] EmoticonSprites;
     public TextMesh PatienceLabel;
     public GameObject CharacterRoot;
-    public ParticleSystem Green, Red, Smoke;
 
     private int _lastPatience = 0;
     private bool _isSubscribed = false;
+
+    public string DefaultAnimation = "Poof";
+    private readonly string[] OkAnimations = {"Thumb", "Yes", "Yes1"};
+    private readonly string[] BadAnimations = {"No2", "No3"};
 
     public void Init(ICharacter character, RoundController game)
     {
         _character = character;
         _game = game;
 
-        if (Green != null)
-        {
-            Green.Stop();
-            Green.Clear();
-        }
-        if (Red != null)
-        {
-            Red.Stop();
-            Red.Clear();
-        }
-        if (Smoke != null)
-        {
-            Smoke.gameObject.SetActive(false);
-        }
-        
 
         if (!_isSubscribed)
         {
@@ -63,6 +51,11 @@ public class CharacterAvatarController : MonoBehaviour
 
         _lastPatience = _character.GetPatience();
         SetEmoticon();
+
+        if (CharacterAnimator != null)
+        {
+            CharacterAnimator.Play(DefaultAnimation);
+        }
     }
 
     public Transform GetHandsTransform()
@@ -83,21 +76,21 @@ public class CharacterAvatarController : MonoBehaviour
             {
                 if (CharacterAnimator != null)
                 {
-                    CharacterAnimator.Play("Thumb");
+                    CharacterAnimator.Play(OkAnimations[Random.Range(0, OkAnimations.Length)]);
                 }
-                if (Green != null)
-                {
-                    Green.Stop();
-                    Green.Clear();
-                    Green.Play();
-                }
-            } else if (_lastPatience > _character.GetPatience())
+            }
+            else if (_lastPatience > _character.GetPatience())
             {
-                if (Red != null)
+                if (CharacterAnimator != null)
                 {
-                    Red.Stop();
-                    Red.Clear();
-                    Red.Play();
+                    if (_character.GetPatience() <= 0)
+                    {
+                        CharacterAnimator.Play("RageMode");
+                    }
+                    else
+                    {
+                        CharacterAnimator.Play(BadAnimations[Random.Range(0, BadAnimations.Length)]);
+                    }
                 }
             }
         }
@@ -105,13 +98,20 @@ public class CharacterAvatarController : MonoBehaviour
         {
             float patienceValue = _character.GetPatience() / (float) _character.GetCharacter().StartPatience;
             AudioClip saySound = player.GetCharacter().GetSaySound();
+            string sayAnim = "Speak";
             if (!player.IsHuman() && patienceValue < 2f / EmoticonSprites.Length)
             {
                 saySound = player.GetCharacter().GetSayRageSound();
+                sayAnim = "Rage Speak";
             }
             if (saySound != null)
             {
                 SoundController.Play(saySound);
+            }
+            
+            if (CharacterAnimator != null)
+            {
+                CharacterAnimator.Play(sayAnim);
             }
         }
         _lastPatience = _character.GetPatience();
@@ -132,19 +132,6 @@ public class CharacterAvatarController : MonoBehaviour
                 Emoticon.color = Color.Lerp(Color.red, Color.green, patienceValue);
                 break;
             }
-        }
-    }
-
-    private void Update()
-    {
-        if(Smoke == null) return;
-        if (_lastPatience <= 0 && _lastPatience > -50)
-        {
-            _lastPatience = -100;
-            Smoke.gameObject.SetActive(true);
-            Smoke.Stop();
-            Smoke.Clear();
-            Smoke.Play();
         }
     }
 }

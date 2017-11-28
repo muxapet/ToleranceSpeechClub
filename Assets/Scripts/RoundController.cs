@@ -50,6 +50,7 @@ public class RoundController : MonoBehaviour
         
         SoundController.Play(GameMusic, true);
         
+        CancelInvoke();
         Invoke("NextTurn", 3f);
         _isLoose = false;
         RoundTime = 0;
@@ -94,7 +95,9 @@ public class RoundController : MonoBehaviour
 
         if (_isLoose)
         {
+            Invoke("OnPlayerLose", 10f);
             
+            SoundController.Stop(GameMusic);
             return;
         }
         

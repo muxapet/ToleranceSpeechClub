@@ -43,7 +43,7 @@ namespace Model
                             characterCaresOf.Value = Random.Range(-10, 10);
                         }
                         int catInfluence = sentenceCategory.Value * characterCaresOf.Value;
-                        if (catInfluence < 0) catInfluence = catInfluence * 20;
+                        if (catInfluence < 0) catInfluence = catInfluence * 2;
                         influence += catInfluence;
                     }
                 }
