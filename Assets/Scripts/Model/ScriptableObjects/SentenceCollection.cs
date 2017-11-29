@@ -100,9 +100,9 @@ public class SentenceCollection
                         continue;
                     }
                     string eng = ru;
-                    if (values.Length > 11)
+                    if (values.Length >= 10)
                     {
-                        eng = values[11].Trim();
+                        eng = values[9].Trim();
                     }
                     SentenceObject sentence = new SentenceObject(eng, ru);
                     

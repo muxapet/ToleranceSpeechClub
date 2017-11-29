@@ -51,6 +51,7 @@ public class SentenceObject
 
     public SentenceObject(string eng, string ru)
     {
+//        Debug.Log(eng + " -----> " + ru);
         _eng = eng;
         _ru = ru;
         OnNewGameStarted();

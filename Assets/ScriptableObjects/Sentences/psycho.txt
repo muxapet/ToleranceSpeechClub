@@ -1,39 +1,99 @@
-	Фраза	Религия	Наркотики	Геи	Деньги	Сексизим	Расизм	Алкоголь			
-	Люблю пивасик прохладным вечером	0	0	0	0	0	0	10		10	What could be better than a bottle of beer on a chill evening?
-	Эти капиталисты забирают все наши деньги!				-5					-5	Those big companies are taking away our money!
-	У моего дядюшки Клетуса своя мет-лаборатория!		10							10	My uncle Clethus has his own meth lab
-	Мексиканцы, пуэрториканцы - какая разница ? 						8			8	Mexicans, Puerto-ricans, what the difference?
-	Ирак и Иран разве не одно и то же ? 						8			8	Aren't Iraq and Iran the same goddamn place?
-	Ах ты! Капиталистическая мразь!				-10					-10	You capitalist pig!
-	Мой дед состоял в ККК						10			10	My grandpa was a KKK member
-	Хочешь пива ? Или чего крепче ? 		5					9		14	Hey, wanna crack open a cold one? Or something harder?
-	Бабе место на кухне					8				8	Women should know their place. At kitchen it is
-	Эх, маловато мой батя мамку бил!					10				10	Dad didn't beat my mother nearly enough
-	А ты из этих что ли? Из заднеприводных ? 			-10						-10	Are you one of those? Rear wheel drive?
-	Видел бы все это Генерал Ли...					5	8			13	If only general Lee saw this...
-	Выпьем за Конфедерацию!			-4	-3	5	10	8		16	Let's drink for the confederation!
-	Проклятые копы накрыли мою плантацию травы		10		-3					7	
-	Мы здесь таких как ты не любим!	-1	-2	-10	-5	9	9			0	
-	Политики отняли всю нашу работу!				-6					-6	
-	Я не считаю нужным платить налоги				-8					-8	
-	Я хожу на семейные тусовки с целью подцепить телку!	-8								-8	
-	Лучший самогон - это разбавленный бензин!									0	
-	У меня есть одна книга. И это Библия!	9								9	
-	Вздернуть бы тебя вон на том дереве, приятель			-10	-10	-10	-10			-40	
-	А эти кексы с гашишем? 		10								
-	Эй чувак, все парни и девушки братья! То есть сестры!					-10					
-	Деньги - бумага! 				-10						
-	Что друг, дунем ? 		10								
-	Все деньги мира нужно разделить поровну				-5						
-	Ах, если бы люди всех рас жили в мире!						-10				
-	Воюют только латентные геи! 			-5							
-	Все войны из-за денег! 				-10						
-	Давно пора легализовать! 		8								
-	Я ничего не имею против религии, но ее устои устарели	-4									
-	Все должны любить друг друга! 	5	5	5	-5	-10	-10	5			
-	Ну вот будут у тебя деньги, что ты сделаешь ? 				-5						
-	Чувак! Это классная дурь! Я вижу то, что ты слышишь! 		10								
-	Тебе нужно выпить и расслабиться!		8					10			
-	Свободная любовь!	-5	5	7		-8	-5	5			
-	Расизм и сексизим уходит в прошлое					-10	-10				
-	Ты мне не брат!	-5	-5	-5	-5	-5	-5	-5			
+	Фраза	Религия	Наркотики	Геи	Деньги	Сексизим	Расизм	Алкоголь	
+	Все люди братья и сестры, сын мой! 	5	0	0	0	-5	-5	10	All men are brothers and sisters, my child
+	В библии есть все ответы	10							Bible has all the answers
+	Бог не одобряет геев! 			-10					God does not welcome gay
+	Наркотики - это от Лукавого! 	5	-10						Drugs are Satan's work
+	Не забудьте сделать пожертвование!				10				Don't forget to donate to church
+	Не гоже бабе мужику перечить! 					10			A woman should not argue with the Man
+	Бог любит прдставителей всех рас! 						-10		God loves people of all races
+	Немного кагора никому не повредит! 							8	Red wine didn't ever hurt anyone
+	Таким содомитам как ты место в аду!			-10					Sodomites like you should burn in hell
+	Кажется, в писании такого не было	-4	-4	-4	-4	-4	-4	-4	I don't think there is a verse that would support that
+	В писании такого точно не было!	-6	-6	-6	-6	-6	-6	-6	There isn't a single verse to support that
+	Проклинаю вас всех! 	-10	-10	-10	-10	-10	-10	-10	Be damned. All of you!
+	Поди найди себе мужа, а то живешь во грехе!					10			Find a husband, sinner!
+	Крашеным бабам - прямая дорога в ад! 					10			Women who look like that should burn in hell
+	Наркоманы - слуги дьявола!		-10						Drug addicts are satan's scum
+	Наша вера самая правильная	10							Our God is the true one!
+	Молитва не работает, если не сделать пожертвование!	10			10				An amen won't help you if you don't donate to church
+	Вы все живете во грехе!	5	-10	-10	-5	5		-8	You all live in sin.
+	Алкоголизм разрушает твою душу							-8	Alcohol corrupts your soul
+	Твои проблемы от того, что твой народ верит не в того бога!						8		Your problems are all from the lack of faith
+	Я не пью алкоголь, я пью протеиновые смеси							-10	I hate alcohol, I only drink protein shakes, bro
+	Верю в правильное питание. И в свой зал. И в гантели. Да, в гантели.	-5	-5						I only believe in healthy foods. And my gym. And my wights. Yea, weights, bro
+	Ненавижу голубых. Особенно в душевой. И лесбиянок ненавижу. Вот так вот 			-10		5			I hate fags. Especially in locker room. I also hate lesbians. Yeah
+	Мне платят деньги за тренировки. На них я покупаю протеин. Люблю протеин. И деньги люблю.				10				I get cash for couching. I buy protein with it. I love protein. I also love cash
+	Женщина в зале? Ха, только если на ресепшене! 					10			A woman in the gym? Huh! If only at the entrance
+	Чёрный, белый. Нет разницы. Главное, чтобы жал хорошо.						-10		Black, white. No difference if he lifts, bro
+	Вера - хорошо, если это вера в спорт! 	-8							Belief is good. If it's about sports
+	Ненавижу наркотики. И этих, как там они...наркоманов. 		-10						I hate drugs. They are fo those.. i mean those addicts
+	Уронил как-то штангу на одного педика			-10					I have dropped a barbel on a fag once, hah!
+	Деньги это как куриные грудки. Только их есть нельзя.				8				Money are like chickien breasts. But you can't eat them though
+	Женщина должна любоваться на мой пресс. На этом всё.					10			A woman's job is to love my abs. That's it
+	Все, кто ходят в качалку - крыте. Уважаю крутых. Даже если они чёрные или латиносы						-10		Guys at the gym the real men. I respect those. Even black or latino
+	Бью алкашей. Слабаки. 							-10	I beat up alcoholics. Week dumbasses
+	Доказательств существования бога нет!	-10	0	0	0	0	0	0	There is no proof of god's existance
+	Можно с таким же успехом верить, что Земля плоская. ха-ха	-8							God? What else? Flat Earth?
+	Я не пью, ведь моя мама это не одобряет							-8	I don't drink, my mom says it's bas for my health
+	Наркотики вредны! Я читал		-8						Drugs are bad! I've read so
+	Не имею ничего против геев			4					I'm fine with gay people
+	Женщины. Я не очень с ними общаюсь					5			Women? I don't really talk to them
+	Геями не становятся, а рождаются!			5					One can't become a gay, you have to born that way
+	Нужно раздобыть денег на коллекционные фигурки				8				I need to find some money for new action figures
+	Мужчины слишком долго нас угнетали!	0	0	0	0	-10	0	0	Men have oppresed us since the dawn of days!
+	Сам иди на кухню!					-10			No you go and make your god damn sandwich!
+	Это все потому, что я женщина ? 					-10			Is this because I am a woman?
+	Мое тело - мое дело!	-10							My body is my deal!
+	Мое тело - это храм!	-8	-10					-10	My body is my temple
+	Требую равной с мужчиной зарплаты!				8	-10			I demand the same wage as men get
+	Не смей смотреть на меня, грязный мужлан!					-10			Don't even look at me, filthy male
+	Расовая дискриминация бесит меня!						-8		Racial discrimination pisses me off!
+	Религия оправдывает угнетение женщин!	-10				-10			Religion constitutionalizes sexist oppression
+	Иди работай!	-5	-5	0	10	0	0	-5	Get a job!
+	А это принесет прибыль ?				10				Will it sell though?
+	Выпиваю иногда! Имею право.							8	I drink sometimes. I have the right to do so
+	Белые мужчины - лучшие работники				5	10	10		White male is the best worker
+	Дамочка! Не кричите так громко, вы мешаете мне работать!					10			Calm your breasts down, woman, I can't work
+	Деньги - моя религия	-8			8				Money is my religion
+	Алкоголь помогает мне расслабиться!							10	Alcohol helps me to relax
+	Я могу перестать пить в любой момент!							10	I can stop any moment. No, really
+	Женщина должна получать столько же, сколько мужчина? Что за бред! 				10	10			A woman should get the same as a man? Is this a joke?
+	Люблю пивасик прохладным вечером	0	0	0	0	0	0	10	I love a pint of beer in a cold evening
+	А эти кексы с гашишем? 		10						Are those weed cupcakes?
+	Эй чувак, все парни и девушки братья! То есть сестры!					-10			Hey man, all men and women are like brothers... I mean sisters!
+	Деньги - бумага! 				-10				Money is nothing but paper
+	Что друг, дунем ? 		10						Let's blaze, my friend
+	Все деньги мира нужно разделить поровну				-5				Money should be divided equally between everyone
+	Ах, если бы люди всех рас жили в мире!						-10		If only people of all races could live in peace
+	Воюют только латентные геи! 			-5					War is for closeted gay men
+	Все войны из-за денег! 				-10				Money is the root of all wars
+	Давно пора легализовать! 		8						Should've legalised it a long time ago...
+	Я ничего не имею против религии, но ее устои устарели	-4							I don't hold anything against religion, but man, are some of their ideas outdated
+	Все должны любить друг друга! 	5	5	5	-5	-10	-10	5	All of us should love eachother
+	Ну вот будут у тебя деньги, что ты сделаешь ? 				-5				So even if you had money, what would have you done?
+	Чувак! Это классная дурь! Я вижу то, что ты слышишь! 		10						Dude! Stuff is good! I can see what you hear!
+	Тебе нужно выпить и расслабиться!		8					10	Just drink and chillout
+	Свободная любовь!	-5	5	7		-8	-5	5	Free Love, man!
+	Расизм и сексизим уходит в прошлое					-10	-10		Racism and Sexism are outdated
+	Ты мне не брат!	-5	-5	-5	-5	-5	-5	-5	You are no brother to me
+	Люблю пивасик прохладным вечером	0	0	0	0	0	0	10	What could be better than a bottle of beer on a chill evening?
+	Эти капиталисты забирают все наши деньги!				-5				Those big companies are taking away our money!
+	У моего дядюшки Клетуса своя мет-лаборатория!		10						My uncle Clethus has his own meth lab
+	Мексиканцы, пуэрториканцы - какая разница ? 						8		Mexicans, Puerto-ricans, what the difference?
+	Ирак и Иран разве не одно и то же ? 						8		Aren't Iraq and Iran the same goddamn place?
+	Ах ты! Капиталистическая мразь!				-10				You capitalist pig!
+	Мой дед состоял в ККК						10		My grandpa was a KKK member
+	Хочешь пива ? Или чего крепче ? 		5					9	Hey, wanna crack open a cold one? Or something harder?
+	Бабе место на кухне					8			Women should know their place. At kitchen it is
+	Эх, маловато мой батя мамку бил!					10			Dad didn't beat my mother nearly enough
+	А ты из этих что ли? Из заднеприводных ? 			-10					Are you one of those? Rear wheel drive?
+	Видел бы все это Генерал Ли...					5	8		If only general Lee saw this...
+	Выпьем за Конфедерацию!			-4	-3	5	10	8	Let's drink for the confederation!
+	Проклятые копы накрыли мою плантацию травы		10		-3				Damn cops ruined my weed farm
+	Мы здесь таких как ты не любим!	-1	-2	-10	-5	9	9		The likes of you are not welcome here!
+	Политики отняли всю нашу работу!				-6				Politicians took away our jobs!
+	Я не считаю нужным платить налоги				-8				I dont think it's necessery to do taxes
+	Я хожу на семейные тусовки с целью подцепить телку!	-8							I only go to family meetings to pick up a girl
+	Лучший самогон - это разбавленный бензин!								Best booze is diluted gasoline
+	У меня есть одна книга. И это Библия!	9							I only got The Book and I aint need any others
+	Вздернуть бы тебя вон на том дереве, приятель			-10	-10	-10	-10		Would be great to hang yoyu on that tree fella
