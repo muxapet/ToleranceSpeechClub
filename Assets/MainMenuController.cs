@@ -11,6 +11,7 @@ public class MainMenuController : MonoBehaviour
     public RoundController Round;
     public Text SurvivedTimer;
     public GameObject Logo;
+    public GameObject Credits;
 
     private Tween fader;
     private bool showing;
@@ -36,6 +37,7 @@ public class MainMenuController : MonoBehaviour
     {
         showing = true;
         gameObject.SetActive(true);
+        Credits.SetActive(false);
 
         if (score > 0)
         {
@@ -78,5 +80,10 @@ public class MainMenuController : MonoBehaviour
         {
             Localizator.LocalizatorSetRussian();
         }
+    }
+
+    public void ToggleCredits()
+    {
+        Credits.SetActive(!Credits.activeSelf);
     }
 }

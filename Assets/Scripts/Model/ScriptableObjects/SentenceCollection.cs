@@ -95,6 +95,10 @@ public class SentenceCollection
                 if (values.Length >= 9)
                 {
                     string ru = values[1].Trim();
+                    if (string.IsNullOrEmpty(ru))
+                    {
+                        continue;
+                    }
                     string eng = ru;
                     if (values.Length > 11)
                     {
