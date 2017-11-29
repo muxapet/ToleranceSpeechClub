@@ -66,6 +66,10 @@ public class RoomController : MonoBehaviour
 		{
 			Ball.gameObject.SetActive(true);
 			Ball.Throw(fromChair.GetHandsTransform(), toChair.GetHandsTransform());
+			if (Game.IsGameLoose)
+			{
+				Ball.gameObject.SetActive(false);
+			}
 		}
 		
 	}
@@ -75,7 +79,7 @@ public class RoomController : MonoBehaviour
 //		Camera.SetControlsEnabled(true);
 		if (!player.IsHuman())
 		{
-			TalkingBubble.Say(_charactersDict[player].GetHandsTransform().position, sentence, Camera.gameObject.transform);
+			TalkingBubble.Say(_charactersDict[player].StartBubble.position, sentence, Camera.gameObject.transform);
 		}
 	}
 }

@@ -10,8 +10,10 @@ public class MainMenuController : MonoBehaviour
     public CanvasGroup Fader;
     public RoundController Round;
     public Text SurvivedTimer;
+    public GameObject Logo;
 
-    private Tween _fader;
+    private Tween fader;
+    private bool showing;
 
     private void Awake()
     {
@@ -20,16 +22,19 @@ public class MainMenuController : MonoBehaviour
 
     public void StartGame()
     {
+        if(!showing) return;
         Round.StartRound();
 
-        _fader = Fader.DOFade(0, 2f).OnComplete(() =>
+        fader = Fader.DOFade(0, 2f).OnComplete(() =>
         {
             gameObject.SetActive(false);
         }).Play();
+        showing = false;
     }
 
     public void Show(float score = 0)
     {
+        showing = true;
         gameObject.SetActive(true);
 
         if (score > 0)
@@ -48,16 +53,18 @@ public class MainMenuController : MonoBehaviour
                 ((int)record)%60);
             SurvivedTimer.transform.localScale = Vector3.one * 2;
             SurvivedTimer.transform.DOScale(Vector3.one, 1f);
+            Logo.SetActive(false);
         }
         else
         {
+            Logo.SetActive(true);
             SurvivedTimer.gameObject.SetActive(false);
         }
     }
 
     private void OnEnable()
     {
-        if (_fader != null) _fader.Kill();
+        if (fader != null) fader.Kill();
         Fader.alpha = 1f;
     }
 

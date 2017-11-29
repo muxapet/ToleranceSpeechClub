@@ -41,13 +41,15 @@ public class BubbleController : MonoBehaviour
 
     public void Hide()
     {
-        if (_rectTransform == null || !gameObject.activeSelf)
-        {
-            gameObject.SetActive(false);
-            return;
-        }
-        _rectTransform.DOAnchorPos(_basePosition + new Vector2(0, 1000), 1f).SetEase(Ease.InBack)
-            .OnComplete(() => { gameObject.SetActive(false); }).Play();
+        gameObject.SetActive(false);
+//        if (_rectTransform == null || !gameObject.activeSelf)
+//        {
+//            gameObject.SetActive(false);
+//            return;
+//        }
+//        
+//        _rectTransform.DOAnchorPos(_basePosition + new Vector2(0, 1000), 1f).SetEase(Ease.InBack)
+//            .OnComplete(() => { gameObject.SetActive(false); }).Play();
     }
 
     public void OnClick()

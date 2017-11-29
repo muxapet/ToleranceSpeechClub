@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Model;
@@ -19,19 +18,18 @@ public class RoundController : MonoBehaviour
     public Action<ICharacter, ICharacter, SentenceObject[]> OnActivePlayerChanged;
     public Action<ICharacter, SentenceObject> OnActivePlayerAnswered;
 
-    private LinkedList<ICharacter> _players;
-    private LinkedListNode<ICharacter> _currentTurn;
+    private LinkedList<ICharacter> playersInRoom;
+    private LinkedListNode<ICharacter> currentTurn;
 
     public AudioClip GameMusic;
     public AudioClip FinishSound;
 
-    private float _startTime = 0;
-    private float ROUND_TIME = 300;
-    private bool _isLoose = true;
+    private const float MaxRoundTime = 300;
+    private bool isLoose = true;
 
     public bool IsGameLoose
     {
-        get { return _isLoose; }
+        get { return isLoose; }
     }
 
     public bool FailIfAllPlayersZero = true;
@@ -40,30 +38,29 @@ public class RoundController : MonoBehaviour
 
     public void StartRound()
     {
-        _startTime = Time.time;
-        _players = CreatePlayers(ChooseOpponents());
+        playersInRoom = CreatePlayers(ChooseOpponents());
 
         if (OnRoundStarted != null)
         {
-            OnRoundStarted(_players.ToArray());
+            OnRoundStarted(playersInRoom.ToArray());
         }
-        
+
         SoundController.Play(GameMusic, true);
-        
+
         CancelInvoke();
         Invoke("NextTurn", 3f);
-        _isLoose = false;
+        isLoose = false;
         RoundTime = 0;
     }
 
     public void StopGame(float time)
     {
         CancelInvoke();
-        if (_players != null)
+        if (playersInRoom != null)
         {
-            _players.Clear();
+            playersInRoom.Clear();
         }
-        _currentTurn = null;
+        currentTurn = null;
         MainMenu.Show(time);
         SoundController.Stop(GameMusic);
         SoundController.Play(FinishSound);
@@ -71,40 +68,40 @@ public class RoundController : MonoBehaviour
 
     private void NextTurn()
     {
-        ICharacter previousCharacter = _currentTurn == null ? null : _currentTurn.Value;
-        if (_currentTurn == null || _currentTurn.Next == null)
+        ICharacter previousCharacter = currentTurn == null ? null : currentTurn.Value;
+        if (currentTurn == null || currentTurn.Next == null)
         {
-            _currentTurn = _players.First;
+            currentTurn = playersInRoom.First;
         }
         else
         {
-            _currentTurn = _currentTurn.Next;
+            currentTurn = currentTurn.Next;
         }
-        Debug.Log("Start turn " + _currentTurn.Value.GetCharacter().Title);
- 
+        Debug.Log("Start turn " + currentTurn.Value.GetCharacter().Title);
+
         if (IsLoose())
         {
-            _isLoose = true;
+            isLoose = true;
         }
 
-        var variants = _currentTurn.Value.GetVariants(VariantsCount);
+        var variants = currentTurn.Value.GetVariants(VariantsCount);
         if (OnActivePlayerChanged != null)
         {
-            OnActivePlayerChanged(previousCharacter, _currentTurn.Value, variants);
+            OnActivePlayerChanged(previousCharacter, currentTurn.Value, variants);
         }
 
-        if (_isLoose)
+        if (isLoose)
         {
             Invoke("OnPlayerLose", 10f);
-            
+
             SoundController.Stop(GameMusic);
             return;
         }
-        
 
-        if (_currentTurn.Value.IsHuman())
+
+        if (currentTurn.Value.IsHuman())
         {
-            _currentTurn.Value.OnStartTurn();
+            currentTurn.Value.OnStartTurn();
         }
         else
         {
@@ -114,25 +111,25 @@ public class RoundController : MonoBehaviour
 
     private void GenerateAnswer()
     {
-        _currentTurn.Value.OnStartTurn();
+        currentTurn.Value.OnStartTurn();
     }
 
     public void Answer(ICharacter from, SentenceObject sentence)
     {
-        if(_currentTurn == null) return;
-        if(!ReferenceEquals(_currentTurn.Value, from)) return;
+        if (currentTurn == null) return;
+        if (!ReferenceEquals(currentTurn.Value, from)) return;
 
-        foreach (var player in _players)
+        foreach (var player in playersInRoom)
         {
             player.OnSaid(from, sentence);
         }
 
         if (OnActivePlayerAnswered != null)
         {
-            OnActivePlayerAnswered(_currentTurn.Value, sentence);
+            OnActivePlayerAnswered(currentTurn.Value, sentence);
         }
 
-        _currentTurn.Value.OnEndTurn();
+        currentTurn.Value.OnEndTurn();
 
         NextTurn();
     }
@@ -141,7 +138,7 @@ public class RoundController : MonoBehaviour
     {
         bool hasNotFailed = false;
         bool hasFailed = false;
-        foreach (var player in _players)
+        foreach (var player in playersInRoom)
         {
             if (player.GetPatience() > 0)
             {
@@ -182,7 +179,6 @@ public class RoundController : MonoBehaviour
         }
 
         List<CharacterObject> choosed = new List<CharacterObject>();
-        string opponentsTitles = "";
 
         int cantGenerateCounter = 0;
         while (choosed.Count < OpponentsCount && cantGenerateCounter < 1000)
@@ -191,7 +187,6 @@ public class RoundController : MonoBehaviour
             if (IsAllowToSameCharacters || !choosed.Contains(Opponents[id]))
             {
                 choosed.Add(Opponents[id]);
-                opponentsTitles += Opponents[id].Title + " ";
             }
             cantGenerateCounter++;
         }
@@ -203,7 +198,7 @@ public class RoundController : MonoBehaviour
         LinkedList<ICharacter> players = new LinkedList<ICharacter>();
         string queue = "";
 
-        int humanTurn = Random.Range(0, characters.Length + 1);
+        int humanTurn = 0;//Random.Range(0, characters.Length + 1);
         for (int i = 0, offset = 0; i < characters.Length + 1; i++)
         {
             if (i == humanTurn)
@@ -231,12 +226,12 @@ public class RoundController : MonoBehaviour
             StopGame(RoundTime);
         }
 
-        if (ROUND_TIME - RoundTime <= 0)
+        if (MaxRoundTime - RoundTime <= 0)
         {
             StopGame(RoundTime);
         }
 
-        if (_isLoose == false)
+        if (isLoose == false && currentTurn != null && !currentTurn.Value.IsHuman())
         {
             RoundTime += Time.deltaTime;
         }

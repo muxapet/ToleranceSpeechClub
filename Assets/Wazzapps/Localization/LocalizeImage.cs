@@ -128,6 +128,7 @@ namespace Wazzapps
         {
             List<SystemLanguage> languages = new List<SystemLanguage>();
             List<Sprite> sprites = new List<Sprite>();
+            if(mLanguagesInternal == null) mLanguagesInternal = new SystemLanguage[0];
             for (int i = 0; i < mLanguagesInternal.Length; i++)
             {
                 languages.Add(mLanguagesInternal[i]);
