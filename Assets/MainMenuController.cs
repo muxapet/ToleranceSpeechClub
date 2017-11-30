@@ -12,9 +12,11 @@ public class MainMenuController : MonoBehaviour
     public Text SurvivedTimer;
     public GameObject Logo;
     public GameObject Credits;
+    public CanvasGroup Intro;
 
     private Tween fader;
     private bool showing;
+    
 
     private void Awake()
     {
@@ -24,11 +26,18 @@ public class MainMenuController : MonoBehaviour
     public void StartGame()
     {
         if(!showing) return;
-        Round.StartRound();
+        
+        Intro.gameObject.SetActive(true);
+        Intro.alpha = 1f;
 
-        fader = Fader.DOFade(0, 2f).OnComplete(() =>
+        fader = Fader.DOFade(0, 1f).OnComplete(() =>
         {
             gameObject.SetActive(false);
+            Round.StartRound();
+            Intro.DOFade(0, 2f).SetDelay(5f).OnComplete(() =>
+            {
+                Intro.gameObject.SetActive(false);
+            });
         }).Play();
         showing = false;
     }
