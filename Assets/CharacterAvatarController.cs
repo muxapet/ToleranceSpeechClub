@@ -16,6 +16,9 @@ public class CharacterAvatarController : MonoBehaviour
     public GameObject CharacterRoot;
     public ParticleSystem Smoke;
 
+    public Color AngerColor;
+    public Color LoveColor;
+
     private int _lastPatience = 0;
     private bool _isSubscribed = false;
 
@@ -159,14 +162,14 @@ public class CharacterAvatarController : MonoBehaviour
         if (_character.IsHuman()) return;
         PatienceLabel.text = _lastPatience.ToString();
         float patienceValue = _lastPatience / (float) _character.GetCharacter().StartPatience;
-        PatienceLabel.color = Color.Lerp(Color.red, Color.green, patienceValue);
+        PatienceLabel.color = Color.Lerp(AngerColor, LoveColor, patienceValue);
         float size = 1f / EmoticonSprites.Length;
         for (int i = 0; i < EmoticonSprites.Length; i++)
         {
             if (patienceValue >= i * size && patienceValue < (i + 1) * size)
             {
                 Emoticon.sprite = EmoticonSprites[i];
-                Emoticon.color = Color.Lerp(Color.red, Color.green, patienceValue);
+                Emoticon.color = Color.Lerp(AngerColor, LoveColor, patienceValue);
                 break;
             }
         }

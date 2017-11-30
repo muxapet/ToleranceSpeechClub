@@ -1,5 +1,5 @@
 #	English	Russian	
-score	You survived {0:0}:{1:00}<br><color=#f00><size=48>(your record is {2:0}:{3:00})</size></color>	Ты выжил {0:0}:{1:00}<br><color=#f00><size=48>(твой рекорд {2:0}:{3:00})</size></color>	
+score	You survived {0:0}:{1:00}<br><color=#fee6><size=26>(your record is {2:0}:{3:00})</size></color>	Ты выжил {0:0}:{1:00}<br><color=#fee6><size=26>(рекорд {2:0}:{3:00})</size></color>
 play	Play	Играть
 credits	Credits	Авторы
 once	Once upon a saturday evening four total randos met in the room to talk each other...	Однажды субботним вечером четверо разных людей собрались в комнате, чтобы поболтать...
